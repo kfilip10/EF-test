@@ -7,9 +7,6 @@ module.exports = {
     {
       name: '@electron-forge/maker-squirrel',
       config: {},
-      "platforms": [
-        "win32"
-      ]
     },
     {
       name: '@electron-forge/maker-zip',
@@ -30,16 +27,4 @@ module.exports = {
       config: {},
     },
   ],
-  publishers: [
-    {
-      name: "@electron-forge/publisher-github",
-      config: {
-        repository: {
-          owner: "kfilip10",
-          name: "EF-test"
-        },
-        prerelease: true
-      }
-    }
-  ]
 };
