@@ -1,5 +1,8 @@
 const { app, BrowserWindow } = require('electron');
 const path = require('path');
+const { autoUpdater } = require('electron-updater');
+
+let mainWindow;
 
 // Handle creating/removing shortcuts on Windows when installing/uninstalling.
 if (require('electron-squirrel-startup')) {
@@ -47,3 +50,26 @@ app.on('activate', () => {
 
 // In this file you can include the rest of your app's specific main process
 // code. You can also put them in separate files and import them here.
+autoUpdater.on('update-available', () => {
+  // Notify user that a new update is available
+  dialog.showMessageBox(mainWindow, {
+    type: 'info',
+    title: 'Update Available',
+    message: 'A new version of the application is available. It will be downloaded in the background and you will be notified when it is ready to be installed.'
+  });
+});
+
+autoUpdater.on('update-downloaded', () => {
+  // Notify user that update is ready for installation
+  // and restart the app to install the update
+  dialog.showMessageBox({
+      type: 'info',
+      title: 'Update Ready',
+      message: 'A new version has been downloaded. Restart the application to apply the updates.',
+      buttons: ['Restart', 'Later']
+  }).then((result) => {
+      if (result.response === 0) {
+          autoUpdater.quitAndInstall();
+      }
+  });
+});
