@@ -30,22 +30,5 @@
     "@electron-forge/plugin-auto-unpack-natives": "^7.2.0",
     "@electron-forge/publisher-github": "^7.2.0",
     "electron": "28.0.0"
-  },
-  "config": {
-    "forge": {
-      "packagerConfig": {},
-      "publishers": [
-        {
-          "name": "@electron-forge/publisher-github",
-          "config": {
-            "repository": {
-              "owner": "kfilip10",
-              "name": "EF-test"
-            },
-            "prerelease": true
-          }
-        }
-      ]
-    }
   }
 }
